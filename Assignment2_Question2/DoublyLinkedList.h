@@ -5,6 +5,7 @@
 
 class DoublyLinkedList
 {
+
 };
 
 #endif // !DOUBLYLINKEDLIST
