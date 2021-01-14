@@ -20,12 +20,15 @@ Node<T>* DoublyLinkedList<T>::getTail() const
 }
 
 template<typename T>
-void DoublyLinkedList<T>::listAppend(Node<T>* newNode)
+void DoublyLinkedList<T>::listAppend(T value)
 {
+	Node<T>* newNode;
+		
+	newNode->data = value;
 	if (this->head == nullptr)
 	{
-		list->head = newNode;
-		list->tail = newNode;
+		this->head = newNode;
+		this->tail = newNode;
 	}
 	else
 	{
@@ -40,12 +43,12 @@ void DoublyLinkedList<T>::listPrepend(Node<T>* newNode)
 {
 	if (this->head == nullptr)
 	{
-		list->head = newNode;
-		list->tail = newNode;
+		this->head = newNode;
+		this->tail = newNode;
 	}
 	else
 	{
-		newNode->next = list->head;
+		newNode->next = this->head;
 		this->head->prev = newNode;
 		this->head = newNode;
 	}
@@ -54,11 +57,11 @@ void DoublyLinkedList<T>::listPrepend(Node<T>* newNode)
 template<typename T>
 void DoublyLinkedList<T>::printList() const
 {
-	Node<T> curNode = this->head;
+	Node<T>* curNode = this->head;
 
 	while(curNode != nullptr)
 	{
-		cout << curNode;
+		cout << this->curNode;
 		curNode = curNode->next;
 	}
 }
