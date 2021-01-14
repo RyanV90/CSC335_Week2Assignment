@@ -3,5 +3,9 @@
 class QuadraticProbingHashTable :
     public HashTable
 {
+public:
+    QuadraticProbingHashTable();
+    void hashInsert(int item);
+    int hashSearch(int key);
 };
 

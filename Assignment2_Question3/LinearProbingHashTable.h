@@ -3,5 +3,7 @@
 class LinearProbingHashTable :
     public HashTable
 {
+public:
+    LinearProbingHashTable();
 };
 
