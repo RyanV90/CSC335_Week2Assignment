@@ -22,7 +22,10 @@ int main() {
 	std::cout << "Length of list: " << list.getLength() << std::endl;
 	list.printList();
 
+	list.insertAfter(list.listSearch(5), 7);
 
+	std::cout << "Length of list: " << list.getLength() << std::endl;
+	list.printList();
 
 	return 0;
 }

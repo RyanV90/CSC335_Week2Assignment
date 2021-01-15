@@ -185,5 +185,16 @@ int LinkedList<T>::getLength() const
 template<typename T>
 Node<T>* LinkedList<T>::listSearch(T key)
 {
+	Node<T>* curNode = this->head;
+
+	while (curNode != nullptr)
+	{
+		if (curNode->getNodeData() == key)
+		{
+			return curNode;
+		}
+		curNode = curNode->getNextNode();
+	}
+	
 	return nullptr;
 }
