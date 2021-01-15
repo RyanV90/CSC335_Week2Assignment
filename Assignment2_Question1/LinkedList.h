@@ -94,6 +94,23 @@ void LinkedList<T>::listPrepend(T nodeData)
 template<typename T>
 void LinkedList<T>::insertAfter(Node<T>* curNode, T nodeData)
 {
+	if (this->head == nullptr)  // empty list, insert at head
+	{
+		Node<T>* newNode = new Node<T>(nodeData, nullptr); // Dynamically create a node object
+		this->head = newNode;
+		this->tail = newNode;
+	}
+	else if (curNode == this->tail)  //insert after the tail
+	{
+		Node<T>* newNode = new Node<T>(nodeData, curNode->getNextNode());
+		this->tail->setNextNode(newNode);
+		this->tail = newNode;
+	}
+	else // insert in the middle
+	{
+		Node<T>* newNode = new Node<T>(nodeData, curNode->getNextNode());
+		curNode->setNextNode(newNode);
+	}
 }
 
 template<typename T>

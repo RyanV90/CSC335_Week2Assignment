@@ -11,5 +11,10 @@ int main() {
 	list.listPrepend(1);
 	list.listPrepend(2);
 	list.printList();
+
+	list.insertAfter(list.getHead()->getNextNode()->getNextNode(), 9);
+
+	list.printList();
+
 	return 0;
 }
