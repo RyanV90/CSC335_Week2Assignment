@@ -170,7 +170,16 @@ void LinkedList<T>::printList() const
 template<typename T>
 int LinkedList<T>::getLength() const
 {
-	return 0;
+	Node<T>* curNode = this->head;
+	int lengthOfListCounter = 0;
+
+	while (curNode != nullptr)
+	{
+		curNode = curNode->getNextNode();
+		lengthOfListCounter++;
+	}
+
+	return lengthOfListCounter;
 }
 
 template<typename T>
