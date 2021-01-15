@@ -78,6 +78,17 @@ void LinkedList<T>::listAppend(T nodeData)
 template<typename T>
 void LinkedList<T>::listPrepend(T nodeData)
 {
+	Node<T>* tempNode = new Node<T>(nodeData, nullptr);
+	if (this->head == nullptr)
+	{
+		this->head = tempNode;
+		this->tail = tempNode;
+	}
+	else
+	{
+		tempNode->setNextNode(this->head);
+		this->head = tempNode;
+	}
 }
 
 template<typename T>
