@@ -4,9 +4,9 @@ int main() {
 
 	LinkedList<int> list;
 
-	//list.listappend(5);
-
-	//list.printlist();
-
+	list.listAppend(5);
+	list.listAppend(6);
+	list.printList();
+	list.printList();
 	return 0;
 }

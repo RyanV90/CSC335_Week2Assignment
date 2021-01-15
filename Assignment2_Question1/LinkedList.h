@@ -2,8 +2,6 @@
 #define LINKEDLIST
 #include "Node.h"
 #include <iostream>
-//#include <list>
-//#include <vector>
 
 template<typename T>
 class LinkedList {
@@ -64,7 +62,7 @@ void LinkedList<T>::setTail(Node<T>* tail)
 template<typename T>
 void LinkedList<T>::listAppend(T nodeData)
 {
-	/*Node<T>* newNode = new Node<T>(nodeData, nullptr);
+	Node<T>* newNode = new Node<T>(nodeData, nullptr);
 
 	if (this->tail == nullptr)
 	{
@@ -72,11 +70,9 @@ void LinkedList<T>::listAppend(T nodeData)
 	}
 	else
 	{
-		this->tail->next = newNode;
+		this->tail->setNextNode(newNode);
 		this->tail = newNode;
-	}*/
-
-	//delete newNode;
+	}
 }
 
 template<typename T>
@@ -97,42 +93,40 @@ void LinkedList<T>::removeAfter(Node<T>* curNode)
 template<typename T>
 void LinkedList<T>::removeHead()
 {
-	//if (this->head != nullptr)
-	//{
-	//	Node<T>* tempNode = this->head;
-	//	this->head = this->head->nextNode;
-	//	delete tempNode;  //Nodes are dynamically allocated, must delete them when removed.
-	//}
+	if (this->head != nullptr)
+	{
+		Node<T>* tempNode = this->head;
+		this->head = this->head->getNextNode();
+		delete tempNode;  //Nodes are dynamically allocated, must delete them when removed.
+	}
 }
 
 template<typename T>
 void LinkedList<T>::removeTail()
 {
-	/*Node<T>* tempNode = this->head;
+	Node<T>* tempNode = this->head;
 
-	while (tempNode->nextNode != this->tail)
+	while (tempNode->getNextNode() != this->tail)
 	{
-		tempNode = tempNode->nextNode;
+		tempNode = tempNode->getNextNode();
 	}
 
-	tempNode->nextNode = nullptr;
+	tempNode->setNextNode(nullptr);
+	
 	delete this->tail;
-	this->tail = tempNode;*/
-	//delete tempNode;
+	this->tail = tempNode;
 }
 
 template<typename T>
 void LinkedList<T>::printList() const
 {
-	//Node<T>* tempNode = this->head;  // or temp = head
-	//while (tempNode != nullptr)
-	//{
-	//	std::cout << tempNode->nodeData << " ";
-	//	tempNode = tempNode->nextNode;
-	//}
-	//std::cout << "\n";
-
-	//delete tempNode;
+	Node<T>* tempNode = this->head;
+	while (tempNode != nullptr)
+	{
+		std::cout << tempNode->getNodeData() << " ";
+		tempNode = tempNode->getNextNode();
+	}
+	std::cout << "\n";
 }
 
 template<typename T>
