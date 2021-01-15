@@ -10,7 +10,7 @@ public:
 	T getNodeData() const;
 	void setNodeData(T nodeData);
 	Node<T>* getNextNode() const;
-	void setNextNode(Node<T>* prevNode);
+	void setNextNode(Node<T>* nextNode);
 	Node<T>* getPrevNode() const;
 	void setPrevNode(Node<T>* prevNode);
 
@@ -57,7 +57,7 @@ inline Node<T>* Node<T>::getNextNode() const
 }
 
 template<typename T>
-inline void Node<T>::setNextNode(Node<T>* prevNode)
+inline void Node<T>::setNextNode(Node<T>* nextNode)
 {
 	this->nextNode = nextNode;
 }

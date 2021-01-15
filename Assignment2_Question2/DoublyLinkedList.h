@@ -57,9 +57,9 @@ inline void DoublyLinkedList<T>::setTail(Node<T>* tail)
 template<typename T>
 inline void DoublyLinkedList<T>::listAppend(T nodeData)
 {
-	Node<T>* newNode = new Node<T>(nodeData, nullptr);
+	Node<T>* newNode = new Node<T>(nodeData, nullptr, nullptr);
 
-	if (this->tail == nullptr)
+	if (this->head == nullptr)
 	{
 		this->head = this->tail = newNode;
 	}
@@ -74,7 +74,7 @@ inline void DoublyLinkedList<T>::listAppend(T nodeData)
 template<typename T>
 inline void DoublyLinkedList<T>::listPrepend(T nodeData)
 {
-	Node<T>* newNode = new Node<T>(nodeData, nullptr);
+	Node<T>* newNode = new Node<T>(nodeData, nullptr, nullptr);
 	
 	if (this->head == nullptr)
 	{
