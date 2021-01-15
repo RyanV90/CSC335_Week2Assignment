@@ -5,6 +5,7 @@
 template<typename T>
 class LinkedList {
 
+
 };
 
 #endif // !LINKEDLIST
