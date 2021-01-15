@@ -143,8 +143,6 @@
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="Node.cpp" />
     <ClCompile Include="LinkedListFunctionTest.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
