@@ -27,5 +27,7 @@ int main() {
 	std::cout << "Length of list: " << list.getLength() << std::endl;
 	list.printList();
 
+	std::cout << list.listSearch(50);
+
 	return 0;
 }
