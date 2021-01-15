@@ -1,6 +1,9 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
 #include "Node.h"
+#include <iostream>
+//#include <list>
+//#include <vector>
 
 template<typename T>
 class LinkedList {
