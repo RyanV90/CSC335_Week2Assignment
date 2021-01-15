@@ -12,7 +12,8 @@ int main() {
 	list.listPrepend(2);
 	list.printList();
 
-	list.insertAfter(list.getHead()->getNextNode()->getNextNode(), 9);
+	//list.insertAfter(list.getHead()->getNextNode()->getNextNode(), 9);
+	list.removeAfter(list.getHead());
 
 	list.printList();
 

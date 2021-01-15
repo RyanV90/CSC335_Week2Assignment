@@ -116,6 +116,16 @@ void LinkedList<T>::insertAfter(Node<T>* curNode, T nodeData)
 template<typename T>
 void LinkedList<T>::removeAfter(Node<T>* curNode)
 {
+	if (curNode->getNextNode() == nullptr)  //if the after Node is NULL, there is nothing to remove
+	{
+		std::cout << "Cannot remove Node\n";
+	}
+	else
+	{
+		Node<T>* tempNode = curNode->getNextNode();
+		curNode->setNextNode(tempNode->getNextNode());
+		delete tempNode;
+	}
 }
 
 template<typename T>
