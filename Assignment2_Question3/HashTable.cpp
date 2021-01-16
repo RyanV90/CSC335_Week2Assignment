@@ -2,62 +2,20 @@
 #include <vector>
 #include <exception>
 #include <list>
-#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdio.h>     
 #include <stdlib.h> 
 #include "LinkedList.h"
 using namespace std;
 
-//===================================== Hash related functions ================
 const int TABLESIZE = 31;
 int collisionCounter = 0;
+
 //hash function defined as modulo operator
 //receive an item and return bucket key (index)
 template<typename T>
 int hfun(T item)
 {
 	return item % TABLESIZE;  //
-}
-
-//insert an item in the hash table
-//Collision resolution by chanining
-template<typename T>
-void hashInsertChaining(vector<LinkedList<T> >& h, T item)
-{
-	h[hfun(item)].listAppend(item);
-}
-
-template<typename T>
-void hashRemoveChaining(vector <LinkedList<T>>& h, T item)
-{
-	int key = hfun(item);
-	if (h[key].getHead()->data == item)
-		h[key].removeHead();
-	else if ((h[key].getTail()->data == item))
-		h[key].removeTail();
-	else
-	{
-		Node<T>* temp = h[key].getHead();
-		while (temp->next != NULL) {
-			if (temp->next->data == item)
-			{
-				h[key].removeAfter(temp);
-				break;
-			}
-			else
-				temp = temp->next;
-		}
-	}
-}
-
-//Display all elements of the hash table, Collision resolution by chaining
-template<typename T>
-void printHash(const vector<LinkedList<T>>& h)
-{
-	for (int i = 0; i < h.size(); i++) // goes through each bucket and prints the linked list there
-	{
-		cout << i << "---> ";
-		h[i].printList();
-	}
 }
 
 //insert an item in the hash table
