@@ -57,7 +57,7 @@ int main() {
 	cout << endl;
 	
 	//Print the table size, number of values, total number of collisions, and final hash table of quadratic probing hash
-	cout << "\nHash table inserting by linear probing" << "\nTable Size: " << quadraticProbingHashTable.getTableSize() <<
+	cout << "\nHash table inserting by quadratic probing" << "\nTable Size: " << quadraticProbingHashTable.getTableSize() <<
 		"\nNumber of values being inserted: " << integerListSize << "\nTotal number of collisions: " << quadraticProbingHashTable.getCollisionCounter() << endl;
 	quadraticProbingHashTable.printHashTable();
 

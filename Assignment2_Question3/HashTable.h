@@ -32,7 +32,7 @@ inline HashTable<T>::HashTable()
 {
 	collisionCounter = 0;
 	tableSize = 31;
-	data = vector<int>(31, -1);
+	data = vector<int>(tableSize, -1);
 }
 
 //Base hash function
@@ -48,7 +48,7 @@ inline bool HashTable<T>::hashInsertLprobe(T item)
 {
 	int bucket = hashFunction(item);    //find the hash value of the key
 	int count = 0;
-	int totalCollisionCounter = 0;
+
 	while (count < tableSize)  // No need to probe more than number of buckets(cells) in the table
 	{
 		if (data[bucket] == -1 || data[bucket] == -2)  //if an empty cell
@@ -57,8 +57,7 @@ inline bool HashTable<T>::hashInsertLprobe(T item)
 			return true;
 		}
 		++count;  // number of probes
-		totalCollisionCounter += count;
-		setCollisionCounter(count);
+		collisionCounter += count;
 		bucket = (bucket + 1) % tableSize;  //next linear bucket
 	}
 	return false;
@@ -87,7 +86,7 @@ inline bool HashTable<T>::hashInsertQ(T item)
 		bucket = (hashFunction(item) + 1 * i + 1 * (int)pow(i, 2)) % tableSize; //Calculation for collision
 		bucketsProbed += 1; //counts the total number of collisions
 
-		setCollisionCounter(bucketsProbed); 
+		collisionCounter += bucketsProbed;
 	}
 	return false;
 }
