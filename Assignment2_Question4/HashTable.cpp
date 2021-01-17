@@ -189,6 +189,17 @@ bool hashRemoveQ(vector<T>& h, T key)
 
 int main()
 {
+	vector<int> listOfIntegers;
+
+	listOfIntegers.push_back(4371);
+	listOfIntegers.push_back(1323);
+	listOfIntegers.push_back(6173);
+	listOfIntegers.push_back(4199);
+	listOfIntegers.push_back(4344);
+	listOfIntegers.push_back(9679);
+	listOfIntegers.push_back(1989);
+
+
 
 	return 0;
 }
