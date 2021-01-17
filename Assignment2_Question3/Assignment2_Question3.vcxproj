@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HashTable.cpp" />
+    <ClInclude Include="HashTable.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Node.h" />
+    <ClCompile Include="HashTableTester.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
