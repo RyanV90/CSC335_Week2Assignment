@@ -2,11 +2,11 @@
 #include <vector>
 #include <exception>
 #include <list>
-#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdio.h>
 #include <stdlib.h>
-
 using namespace std;
 
+//Creates a hash table object which can insert values by linear and quadratic probing
 template<typename T>
 class HashTable {
 
@@ -26,6 +26,7 @@ private:
 	vector<T> data;
 };
 
+//Initializes a hash table of size 31 and a vector to store 31 items
 template<typename T>
 inline HashTable<T>::HashTable()
 {
@@ -34,12 +35,14 @@ inline HashTable<T>::HashTable()
 	data = vector<int>(31, -1);
 }
 
+//Base hash function
 template<typename T>
 inline int HashTable<T>::hashFunction(T item)
 {
 	return item % tableSize;
 }
 
+//Inserts a value to the hash table by linear probing
 template<typename T>
 inline bool HashTable<T>::hashInsertLprobe(T item)
 {
@@ -61,30 +64,7 @@ inline bool HashTable<T>::hashInsertLprobe(T item)
 	return false;
 }
 
-//template<typename T>
-//inline bool HashTable<T>::hashInsertQ(T item)
-//{
-//	int i = 0;
-//	int count = 0;
-//	int totalCollisionCounter = 0;
-//	int bucket = hashFunction(item);
-//	int bucket1 = bucket;  // need a copy of the bucket (key)
-//	while (count < tableSize)
-//	{
-//		if (data[bucket] == -1 || data[bucket] == -2)
-//		{
-//			data[bucket] = item;
-//			return true;
-//		}
-//		i++;
-//		bucket = (bucket1 + i + i * i) % tableSize;
-//		count++;
-//		totalCollisionCounter += count;
-//		setCollisionCounter(totalCollisionCounter);
-//	}
-//	return false;
-//}
-
+//Inserts a value to the hash table by quadratic probing 
 template<typename T>
 inline bool HashTable<T>::hashInsertQ(T item)
 {
@@ -92,8 +72,11 @@ inline bool HashTable<T>::hashInsertQ(T item)
 	int bucketsProbed = 0;
 
 	int bucket = hashFunction(item);
-	while (bucketsProbed < tableSize)
+	
+	//If collision is met, i will increment until it reaches the size of the table
+	while (i < tableSize)
 	{
+		//If the bucket is empty, then the item is inserted (no collision)
 		if (data[bucket] == -1 || data[bucket] == -2)
 		{
 			data[bucket] = item;
@@ -101,15 +84,15 @@ inline bool HashTable<T>::hashInsertQ(T item)
 		}
 
 		i += 1;
-		bucket = (hashFunction(item) + 1 * i + 1 * (int)pow(i, 2)) % tableSize;
+		bucket = (hashFunction(item) + 1 * i + 1 * (int)pow(i, 2)) % tableSize; //Calculation for collision
+		bucketsProbed += 1; //counts the total number of collisions
 
-		bucketsProbed += 1;
-
-		setCollisionCounter(bucketsProbed);
+		setCollisionCounter(bucketsProbed); 
 	}
 	return false;
 }
 
+//Prints the hash table
 template<typename T>
 inline void HashTable<T>::printHashTable()
 {
@@ -117,18 +100,21 @@ inline void HashTable<T>::printHashTable()
 		cout << i << "---> " << data[i] << endl;
 }
 
+//Returns the total number of collisions after insertion
 template<typename T>
 inline int HashTable<T>::getCollisionCounter() const
 {
 	return collisionCounter;
 }
 
+//Sets the total number of collisions during insertion
 template<typename T>
 inline void HashTable<T>::setCollisionCounter(int value)
 {
 	this->collisionCounter = value;
 }
 
+//Returns the size of the hash table
 template<typename T>
 inline int HashTable<T>::getTableSize() const
 {
