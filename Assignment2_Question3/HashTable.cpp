@@ -8,10 +8,14 @@
 using namespace std;
 
 const int TABLESIZE = 31;
+const int NUMBEROFITEMS = 20;
+int collisionCounter = 0;
 
 template<typename T>
 int hfun(T item)
 {
+	collisionCounter++;
+	
 	return item % TABLESIZE;  
 }
 
@@ -28,6 +32,7 @@ bool hashInsertLprobe(vector<T>& h, T item)
 			return true;
 		}
 		++count;  // number of probes
+		//++collisionCounter;
 		bucket = (bucket + 1) % TABLESIZE;  //next linear bucket
 	}
 	return false;
@@ -46,12 +51,12 @@ bool hashInsertQ(vector<T>& h, T item)
 		if (h[bucket] == -1 || h[bucket] == -2)
 		{
 			h[bucket] = item;
-			
 			return true;
 		}
 		i++;
 		bucket = (bucket1 + i + i * i) % TABLESIZE;
 		count++;
+		collisionCounter++;
 	}
 	return false;
 }
@@ -76,20 +81,37 @@ int main()
 {
 	vector<int> htablep(TABLESIZE, -1);
 	vector<int> htableq(TABLESIZE, -1); // initialize all table values = -1, empty since start
-	LinkedList<int> listOfIntegers;
+	vector<int> listOfRandomIntegers(20);
 	
 	srand(time(0));
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < NUMBEROFITEMS; i++)
 	{
-		int integerToInsert = generateRandomNumber(100);
-		listOfIntegers.listAppend(integerToInsert);
-		hashInsertQ(htableq, integerToInsert);
-		hashInsertLprobe(htablep, integerToInsert);
+		listOfRandomIntegers.at(i) = generateRandomNumber(100);
 	}
-	listOfIntegers.printList();
-	printHashTable(htablep);
+	//sort(listOfRandomIntegers.begin(), listOfRandomIntegers.end());
 
+	for (int i = 0; i < NUMBEROFITEMS; i++)
+	{
+		hashInsertLprobe(htablep, listOfRandomIntegers.at(i));
+	}
+	
+	for (int i = 0; i < NUMBEROFITEMS; i++)
+	{
+		hashInsertQ(htableq, listOfRandomIntegers.at(i));
+	}
+	
+
+	
+	for (int number : listOfRandomIntegers)
+	{
+		cout << number << " ";
+	}
+	cout << endl;
+
+	printHashTable(htablep);
+	cout << "Collisons: " << collisionCounter << endl;
 	printHashTable(htableq);
+	cout << "Collisons: " << collisionCounter << endl;
 
 	return 0;
 }
